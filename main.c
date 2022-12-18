@@ -1,9 +1,15 @@
+/* ----------------------------------------------------------
+ *
+ *          CODED BY NULLDEV21 ON GITHUB
+ *
+ *----------------------------------------------------------- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-
-void asciiart( ) {
+void asciiart( ){
+    system("color b");
     printf("                                                                                                       \n"
            "        _____       _____                    _____    ____________  _____    _____           ____      \n"
            "   _____\\    \\_   /      |_             _____\\    \\  /            \\|\\    \\   \\    \\      ____\\_  \\__   \n"
@@ -18,9 +24,6 @@ void asciiart( ) {
            "        |____|/                                                                         \\|____|       \n"
            "                                                                                By NullDev21 on GitHub");
 }
-
-
-
 
 
 
@@ -52,6 +55,7 @@ int indicatore () {
 int  secondomain (void) {
     char scelta [3123] ;
     char a;
+    int ritornohub;
     system("cls");
     asciiart();
     printf("\n\n");
@@ -65,9 +69,11 @@ int  secondomain (void) {
             printf("\n\n\nComandi disponibili :\n"
                    "\n- g (gioca) | permetti di giocare una partita \n"
                    "- c (credits) | crediti del programma");
+            printf("\n\n");
+            system("pause");
             break;
         case 'g':
-
+        rigioca:
             system("cls");
             asciiart();
             system("color 3");
@@ -96,20 +102,39 @@ int  secondomain (void) {
             printf("\n il terzo numero e' : %d", dado3);
 
             if (dado1 == dado2 && dado2 == dado3 && dado1== dado3) {
-                printf("\n\nHai vinto! ");
+                printf("\n\nHAI VINTO !!");
             } else {
-                printf("\n\nhai perso\n\n");
+                printf("\n\nHAI PERSO!!\n\n");
             }
+            system("ping localhost -n 2.0 >nul ");
 
+            printf("Cosa vuoi fare?"
+                   "\n\n[1] Rigioca\n"
+                   "[2] Ritorna al main menu\n"
+                   "[3] Esci \n"
+                   "\nRisposta -> ");
+
+            scanf("%d", &ritornohub);
+            switch (ritornohub) {
+                case 1:
+                    goto rigioca;
+                    break;
+                case 2:
+                    return secondomain();
+                case 3:
+                    return 0;
+            }
             break;
 
         case 'c':
             printf("\n\n Coded with love by NullDev21 ( https://github.com/NullDev21 ) ");
+            printf("\n\n");
+            system("pause");
             break;
 
     }
+
     printf("\n\n\n\n");
-    system("pause");
 
     return secondomain();
 }
@@ -118,8 +143,6 @@ int  secondomain (void) {
 int main (void) {
 
     avviamento();
-
-    system("color b");
 
     secondomain();
 
