@@ -25,10 +25,79 @@ void asciiart( ){
            "                                                                                By NullDev21 on GitHub");
 }
 
-
-
 int credito = 100;
+int gioco() {
+    int partitedagiocare, sceltafinale;
+    system("color 3");
+    start:
+    system("cls");
+    asciiart();
+    printf("\n\n\n");
+    printf("Quante partite vuoi giocare?"
+           "\nRisposta -> ");
+    scanf("%d", &partitedagiocare);
 
+    if ( partitedagiocare > 10) {
+        printf("\n Puoi giocare massimo 5 partite per volta!");
+        goto start  ;
+    }
+
+    for (int i = 0; i<partitedagiocare;i++) {
+        system("pause");
+        int a, b, c;
+        time_t t;
+
+        srand((unsigned) time(&t));
+
+        int dado1 = rand() % 3;
+        int dado2 = rand() % 3;
+        int dado3 = rand() % 3;
+
+
+        printf("\n\nCalcolo primo numero...");
+        system("ping localhost -n 1.0 >nul ");
+        printf("\n il primo nemero e' : %d", dado1);
+        system("ping localhost -n 1.0 >nul ");
+        printf("\n\nCalcolo secondo numero...");
+        system("ping localhost -n 1.0 >nul ");
+        printf("\n il secondo numero e' : %d", dado2);
+        system("ping localhost -n 1.0 >nul ");
+        printf("\n\nCalcolo terzo numero...");
+        system("ping localhost -n 1.0 >nul ");
+        printf("\n il terzo numero e' : %d", dado3);
+
+        if (dado1 == dado2 && dado2 == dado3 && dado1 == dado3) {
+            printf("\n\nHAI VINTO 1000 CREDITI!!\n\n");
+            credito = credito +  1000;
+        } else if (dado1 != dado2 || dado2 != dado3 || dado1 != dado3) {
+            printf("\n\nHAI PERSO 300 CREDITI !! \n\n");
+            credito = credito -  300;
+        } else if (dado1 == dado2 || dado2 == dado3 || dado1 == dado3  ) {
+            printf("\n\nHAI VINTO 200 CREDITI!!\n\n");
+            credito = credito +  200;
+        }
+
+        system("ping localhost -n 2.0 >nul ");
+    }
+    retorno:
+    printf("Cosa vuoi fare? "
+           "\n\n[1] Rigioca\n"
+           "[2] Mostra credito \n"
+           "[3] Esci (perderai tuo credito!)\n"
+           "\nRisposta -> ");
+    scanf("%d" , &sceltafinale);
+    if(sceltafinale == 1) {
+        goto start;
+    } else if(sceltafinale == 2) {
+        printf("\nIl tuo credito e' di: ");
+        printf("%d",credito);
+        printf("\n\n");
+        system("pause");
+        goto retorno;
+    } else if ( sceltafinale == 3) {
+        return 0;
+    }
+}
 void avviamento(){
 
     for ( int i = 0; i<2 ; i++) {
@@ -73,59 +142,7 @@ int  secondomain (void) {
             system("pause");
             break;
         case 'g':
-        rigioca:
-            system("cls");
-            asciiart();
-            system("color 3");
-            printf("\n\n\n");
-            system("pause");
-            int a ,  b , c;
-            time_t t;
-
-            srand((unsigned) time(&t));
-
-            int dado1 = rand() % 3;
-            int dado2 = rand() % 3;
-            int dado3 = rand() % 3;
-
-
-            printf("\n\nCalcolo primo numero...");
-            system("ping localhost -n 2.0 >nul ");
-            printf("\n il primo nemero e' : %d",  dado1);
-            system("ping localhost -n 1.0 >nul ");
-            printf("\n\nCalcolo secondo numero...");
-            system("ping localhost -n 2.0 >nul ");
-            printf("\n il secondo numero e' : %d", dado2);
-            system("ping localhost -n 1.0 >nul ");
-            printf("\n\nCalcolo terzo numero...");
-            system("ping localhost -n 2.0 >nul ");
-            printf("\n il terzo numero e' : %d", dado3);
-
-            if (dado1 == dado2 && dado2 == dado3 && dado1== dado3) {
-                printf("\n\nHAI VINTO !!");
-            } else {
-                printf("\n\nHAI PERSO!!\n\n");
-            }
-            system("ping localhost -n 2.0 >nul ");
-
-            printf("Cosa vuoi fare?"
-                   "\n\n[1] Rigioca\n"
-                   "[2] Ritorna al main menu\n"
-                   "[3] Esci \n"
-                   "\nRisposta -> ");
-
-            scanf("%d", &ritornohub);
-            switch (ritornohub) {
-                case 1:
-                    goto rigioca;
-                    break;
-                case 2:
-                    return secondomain();
-                case 3:
-                    return 0;
-            }
-            break;
-
+            return gioco();
         case 'c':
             printf("\n\n Coded with love by NullDev21 ( https://github.com/NullDev21 ) ");
             printf("\n\n");
